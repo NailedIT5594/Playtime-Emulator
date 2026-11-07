@@ -1,4 +1,4 @@
-# Playtime Emulator
+# AetherCore
 
 A native Windows desktop app with a Steam-client-inspired interface. It scans
 your installed Steam games and can keep a game "running" locally so Steam
@@ -12,8 +12,8 @@ accrues playtime — without Python, a terminal, a browser, or a `start.bat`.
 
 Build (or download) one of the two Windows artifacts:
 
-- **Installer:** `dist/Playtime-Emulator-Setup-<version>-x64.exe`
-- **Portable:** `dist/Playtime-Emulator-<version>-portable.exe`
+- **Installer:** `dist/AetherCore-Setup-<version>-x64.exe`
+- **Portable:** `dist/AetherCore-<version>-portable.exe`
 
 Double-click the `.exe`. The app opens in its own native window; no browser,
 PowerShell window, or batch file is involved.
@@ -48,7 +48,7 @@ back to a hidden copy of `cmd.exe` (still terminated automatically on Stop).
 
 Settings are saved as `settings.json`:
 
-- Installed build: `%APPDATA%\Playtime Emulator\settings.json`
+- Installed build: `%APPDATA%\AetherCore\settings.json`
 - Portable build: next to the portable `.exe`
 - Extra library folders can be added in the Settings dialog.
 
@@ -110,7 +110,7 @@ run_update.bat
 
 It copies the current `index.html` and `ui\` contents to:
 
-- `%APPDATA%\Playtime Emulator\ui` — used by installed and portable builds
+- `%APPDATA%\AetherCore\ui` — used by installed and portable builds
 - `dist\ui` — portable fallback
 - `dist\win-unpacked\ui` — unpacked test build
 
@@ -131,19 +131,19 @@ That one command:
 
 1. Fingerprints the source and bumps the patch version when something changed.
 2. Builds a fresh installer and portable exe when needed (`npm run dist`).
-3. Closes a running Playtime Emulator instance just before deploying.
+3. Closes a running AetherCore instance just before deploying.
 4. Syncs the frontend override with `run_update.bat --no-pause`.
 5. Copies `dist\win-unpacked` over the installed folder the Start Menu
    shortcut already points to.
 6. Deletes obsolete files left in the installed folder.
 7. Repairs the Start Menu and desktop shortcuts and any pinned taskbar shortcut.
 8. Updates the Apps & Features name, version and icon.
-9. Deletes old `dist\Playtime-Emulator-*` installers for previous versions.
+9. Deletes old `dist\AetherCore-*` installers for previous versions.
 10. Records the deployed fingerprint in `.deploy-state.json` and relaunches the
     new build from the installed folder.
 
 `setup.exe` is never required, and the profile in
-`%APPDATA%\Playtime Emulator` is preserved. The installed executable path never
+`%APPDATA%\AetherCore` is preserved. The installed executable path never
 changes, so Windows Search, Start Menu pins and desktop shortcuts keep working.
 
 Useful switches:
@@ -166,7 +166,7 @@ master_update.bat -Fast -NoLaunch
 master_update.bat -SkipBuild -NoLaunch
 ```
 
-Do not launch `dist\win-unpacked\Playtime Emulator.exe` directly for daily use —
+Do not launch `dist\win-unpacked\AetherCore.exe` directly for daily use —
 that creates a second copy and the Start Menu keeps opening the installed one.
 
 The committed `assets/idle-stub.exe` and `build/icon.png` mean end users and
